@@ -14,9 +14,9 @@ namespace lab3.Services
 	{
 		private readonly CurrencyDbContext _currencyDbContext;
 
-		public СurrencyService(CurrencyDbContext currencyDbContext)
+		public СurrencyService(IDbContextFactory<CurrencyDbContext> currencyDbContext)
 		{
-			_currencyDbContext = currencyDbContext;
+			_currencyDbContext = currencyDbContext.CreateDbContext(); ;
 		}
 
 		public async Task<List<Currency>> GetСurrencyBetweenDays(DateTime dateFrom, DateTime dateTo)
@@ -32,6 +32,11 @@ namespace lab3.Services
 			}
 
 			return currencies;
+		}
+
+		public async Task<List<Currency>> GetСurrencyByCurrentDay()
+		{
+			return await GetСurrencyByDay(DateTimeOffset.Now.Date);
 		}
 
 		public async Task<List<Currency>> GetСurrencyByDay(DateTime date)

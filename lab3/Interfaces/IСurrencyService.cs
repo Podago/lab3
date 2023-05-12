@@ -10,5 +10,7 @@ namespace lab3.Interfaces
 		Task<List<Currency>> GetСurrencyByDay(DateTime date);
 
 		Task<List<Currency>> GetСurrencyBetweenDays(DateTime dateFrom, DateTime dateTo);
+
+		Task<List<Currency>> GetСurrencyByCurrentDay();
 	}
 }
